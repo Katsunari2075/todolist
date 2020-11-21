@@ -28,3 +28,21 @@ list.addEventListener('click', e => {
   }
 });
 
+const search = document.querySelector('.search input');
+
+const filterTasks = (term) => {
+
+  Array.from(list.children)
+    .filter((todo) => !todo.textContent.toLowerCase().includes(term))
+    .forEach((todo) => todo.classList.add('filtered'));
+  
+  Array.from(list.children)
+    .filter((todo) => todo.textContent.toLowerCase().includes(term))
+    .forEach((todo) => todo.classList.remove('filtered'));
+};
+
+search.addEventListener('keyup', () => {
+  const term = search.value.trim().toLowerCase();
+  filterTasks(term);
+})
+
